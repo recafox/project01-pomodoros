@@ -7,6 +7,8 @@
         v-for="item in doList"
         :key="item.timestamp"
         :class="{'--active':item.current}"
+        :item="item"
+        :list="list"
         >
         <template v-slot:button>
           <button 
@@ -73,7 +75,7 @@ export default {
       item.finish.timestamp = time.getTime();
       item.current = false;
       listClone.forEach(function(elem, id) {
-        if (elem.timestamp === item.timestamp) {
+        if (vm.isTheSame(elem, item)) {
           listClone[id] = item;
         }
       })

@@ -5,7 +5,7 @@
     <slot name="content"></slot>
     <button 
       class="list__del"
-      @click="deleteItem">
+      @click="deleteItem(item)">
       DEL
     </button>
   </li>
@@ -15,24 +15,21 @@
 export default {
   name: "DoList",
   props: [
-    "item"
+    "item",
+    "list",
   ],
   methods: {
-    deleteItem () {
+    deleteItem (item) {
       const vm = this;
-      let allList = vm.getListFromStorage();
-      allList.forEach(function(elem, id) {
-        if (elem.timestamp === vm.item.timestamp) {
-          allList.splice(id, 1);
+      let listClone = JSON.parse(JSON.stringify(vm.list));
+      listClone.forEach(function(elem, id) {
+        if (vm.isTheSame(elem, item)) {
+          listClone.splice(id, 1);
         }
       });
-      vm.updateStorageForList(allList);
-      vm.callForUpdate();
+      vm.setListStorage(listClone);
+      vm.$bus.$emit("list:update");
     },
-    callForUpdate () {
-      const vm = this;
-      vm.$emit("callForUpdate");
-    }
   }
 
 };
