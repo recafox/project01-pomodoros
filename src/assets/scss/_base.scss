@@ -1,0 +1,27 @@
+.container {
+  border: 1px solid black;
+  background-color: $color--base;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Roboto Mono', monospace;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.p-wrapper {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+svg {
+  fill: $color--ui;
+}
+
+@mixin rounded-container-info {
+  border: $border-width solid $color--info;
+  border-radius: $radius--border;
+}

@@ -1,0 +1,125 @@
+.p-setting {
+  justify-content: space-evenly;
+  h3 {
+    color: $color--ui;
+    font-size: $font--list-l;
+    text-align: center;
+    flex-shrink: 0;
+    margin-bottom: $m-base;
+  }
+  .l-container {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .l-left {
+    height: 70%;
+    .l-area {
+      height: 45%;
+      display: flex;
+      flex-direction: column;
+      .l-wrapper {
+        height: 90%;
+        @include rounded-container-info;
+      }
+    }
+  }
+  .l-alarm-setting {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .c-setting__input {
+      width: 40%;
+      font-size: $font--list-l;
+      color: $color--ui;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.checked {
+        .c-setting__check {
+          background-color: $color--ui;
+        }
+      }
+    }
+    input[type="radio"] {
+      display: none;
+    }
+    .c-setting__check {
+      width: $font--list-s;
+      height: $font--list-s;
+      border: $border-width solid $color--ui;
+      border-radius: $radius--border;
+      margin-right: $m-base;
+    }
+  }
+  .l-right {
+    height: 80%;
+    .l-wrapper {
+      height: 90%;
+      @include rounded-container-info;
+    }
+  }
+  .l-ringtone-list {
+    .list__item {
+      background-color: $color--success;
+      color: $color--ui;
+      font-size: $font--list-s;
+      line-height: $font--warning;
+      text-align: center;
+      height: $font--warning;
+      border-radius: $radius--list-item;
+      margin: $m-s $m-s  $m-s;
+      overflow: hidden;
+      white-space: nowrap;
+
+      &.active {
+        background-color: $color--danger;
+      }
+
+    }
+  }
+  .l-duration-setting {
+    display: flex;
+    justify-content: space-around;
+    
+    h4 {
+      color: $color--ui;
+      text-align: center;
+      font-size: $font--list-m;
+      margin-bottom: $m-base;
+    }
+    .c-duration__input {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    input {
+      width: 90%;
+      background-color: transparent;
+      border: none;
+      height: 45%;
+      caret-color: #fff;
+      text-align: center;
+      font-size: 100px;
+      &:focus {
+        outline: none;
+      }
+    }
+    .s--work {
+      input {
+        color: $color--notice;
+      }
+    }
+    .s--rest {
+      input {
+        color: $color--danger;
+      }
+    }
+  }
+  
+
+}

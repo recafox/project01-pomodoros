@@ -1,0 +1,29 @@
+.l-nav {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 10%;
+  justify-content: center;
+
+}
+
+.c-nav__btn {
+  border: $border-width solid $color--ui;
+  border-radius: 8px;
+  margin: $m-base 0;
+  padding: 5px;
+  cursor: pointer;
+  svg {
+    fill: $color--ui;
+    height: $font--list-l;
+    width: $font--list-l;
+  }
+
+  &:hover, &.--active {
+    border-color: $color--success;
+    svg {
+      fill: $color--success;
+    }
+  }
+}

@@ -1,0 +1,66 @@
+.p-home {
+  flex-direction: column;
+  padding: 0 5%;
+
+  .l-timer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .c-timer__pannel {
+      color: $color--danger;
+      font-size: $font--title;
+    }
+  }
+  
+  .c-timer__controller {
+    display: flex;
+    width: 100%;
+    margin-top: 50px;
+    .controller__btn {
+      background: transparent;
+      border: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-right: 25px;
+      svg {
+        height: 72px;
+        width: 72px;
+      }
+    }
+    .controller__progress {
+      border: $border-width solid $color--ui;
+      border-radius: $radius--list-item;
+      flex-grow: 1;
+      overflow: hidden;
+      .progress__bar {
+        height: 100%;
+        width: 30%;
+        background: $color--danger;
+        border-radius: $radius--border;
+      }
+    }
+  }
+  
+  .l-list {
+    width: 87%;
+    height: 30%;
+    margin-top: 50px;
+    align-self: flex-end;
+    .list__item {
+      line-height: 40px;
+      display: flex;
+      margin: $m-base 0;
+      color: $color--info;
+      font-size: $font--list-m;
+      .list__mark {
+        margin-right: $m-base;
+      }
+    }
+    .c-list--main {
+      color: $color--success;
+    }
+  }
+}

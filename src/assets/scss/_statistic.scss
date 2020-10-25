@@ -1,0 +1,62 @@
+.p-statistic {
+
+  h3 {
+    font-size: $font--list-l;
+    text-align: center;
+    margin-bottom: $m-base;
+  }
+  .l-container {
+    width: 40%;
+    margin: 5%;
+    height: 80%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .l-left {
+    .l-area {
+      height: 47%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .l-wrapper {
+      flex-grow: 1;
+      width: 100%;
+      @include rounded-container-info;
+    }
+  }
+  .l-right {
+    .l-wrapper {
+      height: 90%;
+      @include rounded-container-info;
+    }
+  }
+  .l-counter {
+    display: flex;
+    .c-count {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    h4 {
+      text-align: center;
+      font-size: $font--list-m;
+      margin-bottom: $m-base;
+    }
+    p {
+      font-size: 100px;
+      font-weight: $font--bold;
+    }
+    .s--done p{
+      color: $color--danger;
+    }
+    .s--todo p{
+      color: $color--notice;
+    }
+  }
+}
+
