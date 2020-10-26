@@ -11,9 +11,17 @@ export default {
   name: "Main",
   components: {
     Navbar,
+  },
+  created () {
+    const vm = this;
+    if (!vm.getSettingFromStorage()) {
+      vm.setSettingStorage({
+        work: 25,
+        rest: 5,
+      })
+    }
   }
 }
-
 
 
 </script>

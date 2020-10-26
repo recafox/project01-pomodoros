@@ -8,6 +8,7 @@ Vue.config.productionTip = false
 Vue.prototype.$bus = new Vue();
 const listStorage = "pomodorosList";
 const currentItemStorage = "pomodorosCurrentItem";
+const settingStorage = "pomodorosSetting";
 // const settingStorage = "pomodorosSetting";
 // 全域方法
 // listItem:
@@ -35,7 +36,7 @@ Vue.prototype.setListStorage = function(arr) {
 }
 
 Vue.prototype.getCurrentItemFromStorage = function () {
-  return JSON.parse(localStorage.getItem(currentItemStorage)) || undefined;
+  return JSON.parse(localStorage.getItem(currentItemStorage));
 }
 
 Vue.prototype.setCurrentItemStorage = function (item) {
@@ -44,6 +45,14 @@ Vue.prototype.setCurrentItemStorage = function (item) {
 
 Vue.prototype.isTheSame = function(item1, item2) {
   return item1.timestamp === item2.timestamp;
+}
+
+Vue.prototype.getSettingFromStorage = function () {
+  return JSON.parse(localStorage.getItem(settingStorage));
+}
+
+Vue.prototype.setSettingStorage = function (setting) {
+  localStorage.setItem(settingStorage, JSON.stringify(setting));
 }
 
 

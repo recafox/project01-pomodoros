@@ -24,14 +24,13 @@ export default {
         timestamp: 0,
         content: "",
         current: false,
-        countingStatus: {
-          remainingRest: 0,
-          remainingWork: 0,
-        },
+        remainingTime: 0,
+        currentStatus: "work",
         finish: {
           status: false,
           timestamp: 0,
           workedTime: 0,
+          workRound: 0,
         },
 
       }
@@ -42,11 +41,17 @@ export default {
       let vm = this;
       vm.tempItem.content = vm.tempInput;
       vm.tempItem.timestamp = new Date().getTime();
+      vm.tempItem.remainingTime = vm.countRemainingTime();
       let list = JSON.parse(JSON.stringify(vm.list));
       list.push(vm.tempItem);
       vm.setListStorage(list);
       vm.$bus.$emit("list:update");
       vm.tempInput = "";
+    },
+    countRemainingTime () {
+      const vm = this;
+      let setting = vm.getSettingFromStorage();
+      return setting.work * 60;
     },
 
     validate () {

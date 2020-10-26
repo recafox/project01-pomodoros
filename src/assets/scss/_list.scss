@@ -28,12 +28,13 @@
       padding: 0 $m-s;
       overflow: hidden;
       white-space: nowrap;
-      &.current {
+      &.--active {
         background-color: $color--danger;
         .list__del {
           opacity: 0;
         }
       }
+
       .item__btn {
         height: $font--list-s;
         width: $font--list-s;
@@ -56,10 +57,6 @@
           align-items: center;
           justify-content: center;
           color: #fff;
-          &:hover {
-            border-color: $color--danger;
-            color: $color--danger;
-          }
           .fa-play {
             display: block;
           }
@@ -68,7 +65,7 @@
           }
         }
       }
-      &.current {
+      &.--active {
         .item__btn--play {
           .fa-play {
             display: none !important;

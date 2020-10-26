@@ -25,12 +25,13 @@ import doneList from "../components/doneList.vue";
 //      isCurrent: false,
 //      remainTime: 0,
 //      isCounting: false,
-//    }
+//    },
 //   finish: {
 //     status: false,
 //     timestamp: 0,
-//     workedTime: 0,
+//     workeRound: 0,
 //   },
+
 
 // }
 export default {
@@ -65,6 +66,19 @@ export default {
     }
     vm.currentItem = vm.getCurrentItem();
     vm.$bus.$on("list:update", function() {
+      vm.list = vm.getListFromStorage();
+    })
+    vm.$bus.$on("currentItem:update", function() {
+      vm.currentItem = vm.getCurrentItem();
+      let listClone = JSON.parse(JSON.stringify(vm.list));
+      listClone.forEach(function(elem, id) {
+        elem.current = false;
+        if (vm.isTheSame(elem, vm.currentItem)) {
+          listClone.splice(id, 1);
+        }
+      });
+      listClone.unshift(vm.currentItem);
+      vm.setListStorage(listClone);
       vm.list = vm.getListFromStorage();
     })
 

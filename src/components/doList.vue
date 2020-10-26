@@ -18,7 +18,7 @@
         <template v-slot:assign>
           <button 
             class="item__btn item__btn--play"
-            @click="markCurrent()"
+            @click="markCurrent(item)"
           >
             <i class="fas fa-play"></i>
             <i class="fas fa-pause"></i>
@@ -82,8 +82,12 @@ export default {
       vm.setListStorage(listClone);
       vm.$bus.$emit("list:update");
     },
-    markCurrent() {
-
+    markCurrent(item) {
+      const vm = this;
+      let clone = JSON.parse(JSON.stringify(item));
+      clone.current = true;
+      vm.setCurrentItemStorage(clone);
+      vm.$bus.$emit("currentItem:update");
     },
 
   },
