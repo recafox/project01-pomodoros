@@ -16,8 +16,8 @@ export default {
     const vm = this;
     if (!vm.getSettingFromStorage()) {
       vm.setSettingStorage({
-        work: 25,
-        rest: 5,
+        work: 0.5,
+        rest: 0.1,
       })
     }
   }

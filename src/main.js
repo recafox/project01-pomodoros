@@ -43,6 +43,10 @@ Vue.prototype.setCurrentItemStorage = function (item) {
   localStorage.setItem(currentItemStorage, JSON.stringify(item));
 }
 
+Vue.prototype.removeCurrentItemFromStorage = function () {
+  localStorage.removeItem(currentItemStorage);
+}
+
 Vue.prototype.isTheSame = function(item1, item2) {
   return item1.timestamp === item2.timestamp;
 }

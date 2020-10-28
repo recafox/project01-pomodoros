@@ -22,6 +22,10 @@ export default {
     deleteItem (item) {
       const vm = this;
       let listClone = JSON.parse(JSON.stringify(vm.list));
+      let currentItem = vm.getCurrentItemFromStorage();
+      if (currentItem && item.timestamp === currentItem.timestamp) {
+        vm.removeCurrentItemFromStorage();
+      }
       listClone.forEach(function(elem, id) {
         if (vm.isTheSame(elem, item)) {
           listClone.splice(id, 1);

@@ -28,10 +28,12 @@
       padding: 0 $m-s;
       overflow: hidden;
       white-space: nowrap;
+      cursor: pointer;
       &.--active {
         background-color: $color--danger;
         .list__del {
-          opacity: 0;
+          border-color: white;
+          color: white;
         }
       }
 
@@ -52,25 +54,33 @@
             stroke-width: 2px;
           }
         }
-        &.item__btn--play {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #fff;
-          .fa-play {
-            display: block;
-          }
-          .fa-pause {
-            display: none;
-          }
+      }
+      .item__btn--play {
+        margin-right: $m-s;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        padding: 0;
+        border: none;
+        svg {
+          height: 30px;
+          width: 30px;
+        }
+        .icon--play {
+          display: block;
+        }
+        .icon--recording {
+          display: none;
         }
       }
       &.--active {
         .item__btn--play {
-          .fa-play {
+          .icon--play {
             display: none !important;
           }
-          .fa-pause {
+          .icon--recording {
             display: block !important;
           }
         }

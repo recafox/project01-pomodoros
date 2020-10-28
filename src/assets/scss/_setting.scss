@@ -36,6 +36,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
 
       &.checked {
         .c-setting__check {
@@ -52,6 +53,7 @@
       border: $border-width solid $color--ui;
       border-radius: $radius--border;
       margin-right: $m-base;
+      cursor: pointer;
     }
   }
   .l-right {
@@ -73,6 +75,7 @@
       margin: $m-s $m-s  $m-s;
       overflow: hidden;
       white-space: nowrap;
+      cursor: pointer;
 
       &.active {
         background-color: $color--danger;
@@ -88,20 +91,18 @@
       color: $color--ui;
       text-align: center;
       font-size: $font--list-m;
-      margin-bottom: $m-base;
     }
-    .c-duration__input {
+    .c-duration__text {
       width: 40%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
-    input {
+    span {
       width: 90%;
       background-color: transparent;
       border: none;
-      height: 45%;
       caret-color: #fff;
       text-align: center;
       font-size: 100px;
@@ -110,12 +111,12 @@
       }
     }
     .s--work {
-      input {
+      span {
         color: $color--notice;
       }
     }
     .s--rest {
-      input {
+      span {
         color: $color--danger;
       }
     }

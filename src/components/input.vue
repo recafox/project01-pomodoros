@@ -29,9 +29,9 @@ export default {
         finish: {
           status: false,
           timestamp: 0,
-          workedTime: 0,
-          workRound: 0,
         },
+        workedTime: 0,
+        restedTime: 0,
 
       }
     }

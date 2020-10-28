@@ -22,13 +22,13 @@
       <div class="l-area">
         <h3>Duration</h3>
         <div class="l-wrapper l-duration-setting">
-          <div class="c-duration__input s--work">
+          <div class="c-duration__text s--work">
             <h4>Work</h4>
-            <input type="text" value="25">
+            <span>25</span>
           </div>  
-          <div class="c-duration__input s--rest">
+          <div class="c-duration__text s--rest">
             <h4>Rest</h4>
-            <input type="text" value="5">
+            <span>5</span>
           </div>   
         </div>
       </div>
