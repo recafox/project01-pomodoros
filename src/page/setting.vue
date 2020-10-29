@@ -34,20 +34,65 @@
       </div>
     </div>
     <div class="l-right l-container">
-      <h3>Ringtone</h3>
+      <h3 @click="playRingtone">Ringtone</h3>
       <ul class="l-wrapper l-ringtone-list">
-        <li class="list__item">Music 1</li>
-        <li class="list__item active">Music 2</li>
-        <li class="list__item">Music 3</li>
+        <ringtone 
+          v-for="(item, index) in ringtoneMap" 
+          :key="item.path"
+          :ringtoneObj="item">
+          <template v-slot:title>
+            <span>Music {{ index + 1 }}</span>
+          </template>
+        </ringtone>
       </ul>
     </div>   
   </div>
 </template>
 
 <script>
+import ringtone from "../components/ringtone.vue";
 
 export default {
   name: 'Settingpage',
+  components: {
+    ringtone,
+  },
+  data () {
+    return {
+      ringtoneMap: [
+      {
+        name: 'crowd-applause',
+        path: '/ringtone/crowd-applause.wav',
+      },
+      {
+        name: 'door-bell',
+        path: '/ringtone/door-bell.mp3',
+      },
+      {
+        name: 'retro-game-alarm',
+        path: '/ringtone/retro-game-alarm.wav',
+      }, {
+        name: 'tinkle',
+        path: '/ringtone/tinkle.wav',
+      }
+    ]
+    }
+  },
+  computed : {
+
+  },
+  methods: {
+    playRingtone () {
+
+    }
+  },
+  mounted () {
+    // let music = this.music;
+    // music = new Audio();
+    // console.dir(music);
+    // music.src = '/ringtone/crowd-applause.wav';
+    // music.play();
+  }
   
 }
 </script>
