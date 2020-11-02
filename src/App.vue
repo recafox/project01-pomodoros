@@ -18,6 +18,8 @@ export default {
       vm.setSettingStorage({
         work: 0.5,
         rest: 0.1,
+        alarm: false,
+        ringtone: "",
       })
     }
   }
