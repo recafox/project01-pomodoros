@@ -30,16 +30,29 @@
         width: 72px;
       }
     }
+    .controller__status {
+      color: $color--ui;
+      font-size: 32px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+    }
     .controller__progress {
       border: $border-width solid $color--ui;
       border-radius: $radius--list-item;
       flex-grow: 1;
       overflow: hidden;
+      display: flex;
+      align-items: center;
       .progress__bar {
         height: 100%;
         width: 30%;
         background: $color--danger;
         border-radius: $radius--border;
+      }
+      &.active .controller__status {
+        animation: flash 1s step-end infinite;
       }
     }
   }
@@ -63,5 +76,11 @@
     .c-list--main {
       color: $color--success;
     }
+  }
+}
+
+@keyframes flash {
+  50% {
+    opacity: 0;
   }
 }

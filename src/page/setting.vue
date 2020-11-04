@@ -101,7 +101,7 @@ export default {
             tone.pause();
           } else {
             tone.isCurrent = true;
-            vm.currentSetting.ringtone = toneObj.name;
+            vm.currentSetting.ringtone = toneObj;
             tone.play();
           }
         }
