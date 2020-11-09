@@ -30,8 +30,43 @@
   .l-right {
     .l-wrapper {
       height: 90%;
+      position: relative;
       @include rounded-container-info;
     }
+  }
+  .c-statistic__bar {
+    position: absolute;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  .c-statistic__bar:nth-of-type(1) {
+    top: 30px;
+  }
+
+  @for $i from 2 through 7 {
+    .c-statistic__bar:nth-of-type(#{$i}) {
+      top: 100px + 70px * ($i - 2);
+    }
+  }
+  .c-statistic__bar span {
+    position: relative;
+    z-index: 2;
+    margin-left: -60px;
+  }
+  .c-statistic__bar .c-bar {
+    position: absolute;
+    height: 100%;
+    width: 30%;
+    background: $color--notice;
+    display: flex;
+    align-items: center;
+  }
+  .c-bar .c-bar__num {
+    position: ABSOLUTE;
+    right: -30px;
   }
   .l-counter {
     display: flex;

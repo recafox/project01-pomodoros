@@ -31,7 +31,13 @@
     <div class="l-right l-container">
       <h3>Done</h3>
       <div class="l-wrapper">
-
+        <bar-chart :date="'11/01'" :total="5" />
+        <bar-chart :date="'11/02'" :total="3" />
+        <bar-chart :date="'11/03'" :total="2" />
+        <bar-chart :date="'11/04'" :total="1" />
+        <bar-chart :date="'11/05'" :total="6" />
+        <bar-chart :date="'11/06'" :total="7" />
+        <bar-chart :date="'11/07'" :total="20" />
       </div>
     </div>   
   </div>
@@ -39,11 +45,13 @@
 
 <script>
 import NumberCounter from "../components/numberCounter.vue";
+import BarChart from "../components/barChart.vue";
 
 export default {
   name: 'Statisticpage',
   components: {
     NumberCounter,
+    BarChart,
   },
   data () {
     return {

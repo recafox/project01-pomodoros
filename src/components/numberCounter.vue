@@ -44,11 +44,9 @@ export default {
       function timer () {
         vm.base += vm.step;
         if (vm.base >= vm.number / 5 && vm.base < vm.number / 5 * 2) {
-          console.log("first speed", interval);
           interval = interval * 1.1;
         }
         if (vm.base >= vm.number / 5 * 2) {
-          console.log("second speed", interval);
           interval = interval * 1.13;
         }
         if (vm.base >= vm.number) {
