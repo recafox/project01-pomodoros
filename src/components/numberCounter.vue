@@ -27,7 +27,14 @@ export default {
     // }
   },
   watch: {
-
+    number : {
+      handler (newVal) {
+        const vm = this;
+        if (newVal !== 0 && newVal !== undefined) {
+          vm.counting()
+        }
+      }
+    }
   },
   methods: {
     counting () {
@@ -61,10 +68,10 @@ export default {
 
   },
   mounted () {
-    const vm = this;
-    if (vm.number !== 0 && vm.number !== undefined){
-      vm.counting();
-    }
+    // const vm = this;
+    // if (vm.number !== 0 && vm.number !== undefined){
+    //   vm.counting();
+    // }
 
   }
 

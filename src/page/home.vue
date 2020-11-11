@@ -57,7 +57,6 @@ export default {
   methods: {
     updateCurrentTime (time) {
       const vm = this;
-      console.log('update current time', time);
       let obj = JSON.parse(JSON.stringify(vm.currentItem));
       obj.currentStatus = vm.currentStatus;
       obj.remainingTime = time;

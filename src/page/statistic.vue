@@ -6,11 +6,11 @@
         <div class="l-wrapper l-counter">
           <div class="c-count s--todo">
             <h4>To Do</h4>
-            <number-counter :number="10"></number-counter>
+            <number-counter :number="todayDoNumber"></number-counter>
           </div>
           <div class="c-count s--done">
             <h4>Done</h4>
-            <number-counter :number="5"></number-counter>
+            <number-counter :number="todayDoneNumber"></number-counter>
           </div>
         </div>
       </div>
@@ -19,11 +19,11 @@
         <div class="l-wrapper l-counter">
           <div class="c-count s--todo">
             <h4>To Do</h4>
-            <number-counter :number="20"></number-counter>
+            <number-counter :number="weeklyDoNumber"></number-counter>
           </div>
           <div class="c-count s--done">
             <h4>Done</h4>
-            <number-counter :number="10"></number-counter>
+            <number-counter :number="weeklyDoneNumber"></number-counter>
           </div>
         </div>
       </div>
@@ -55,13 +55,85 @@ export default {
   },
   data () {
     return {
+      data: {},
+      today: [],
+      weekly: [],
+    }
+  },
+  computed: {
+    todayDoneNumber () {
+      const vm = this;
+      return vm.today.filter(item => item.finish.status === true).length;
+    },
+    todayDoNumber () {
+      const vm = this;
+      return vm.today.filter(item => item.finish.status === false).length;
+    },
+    weeklyDoNumber () {
+      const vm = this;
+      return vm.weekly.filter(item => item.finish.status === false).length;
+    },
+    weeklyDoneNumber () {
+      const vm = this;
+      return vm.weekly.filter(item => item.finish.status === true).length;
+    },
+  }, 
+  methods: {
+    ifIsToday (timestamp) {
+      const vm = this;
+      let todayStamp = vm.getTodayTimestamp();
+      let tomorrowStamp = todayStamp + 86400000;
+      return todayStamp <= timestamp && tomorrowStamp > timestamp;
+    },
+    ifThisWeek (timestamp) {
+      const vm = this;
+       // let todayStamp = vm.getTodayTimestamp();
+      let time = new Date().toString();
+      let todayWeek = time.split(' ')[0];
+      let weekMap = [
+        'Mon',
+        'Tue',
+        'Wed',
+        'Thur',
+        'Fri',
+        'Sat',
+        'Sun'
+      ]
+      // get Monday
+      let diff = 0;
+      weekMap.forEach(function (item, index) {
+        if (item === todayWeek) {
+          diff = index;
+        }
+      })
+      let mondayStamp = vm.getTodayTimestamp() - 86400000 * diff;
+
+      // get Next monday
+      let nextMonday = mondayStamp + 86400000 * 7;
+      return mondayStamp <= timestamp && nextMonday > timestamp;
+      
+    },
+    getTodayTimestamp () {
+      let time = new Date();
+      let date = time.getDate();
+      let month = time.getMonth() + 1;
+      let year = time.getFullYear();
+      let str = `${year}-${padZero(month)}-${padZero(date)}`;
+
+      function padZero (number) {
+        return number < 10 ? number : `0${number}`;
+      }
+
+      return Date.parse(str);
 
     }
   },
-  methods: {
-
-  },
   mounted () {
+    const vm = this;
+    vm.data = vm.getListFromStorage();
+    vm.today = vm.data.filter(d => vm.ifIsToday(d.timestamp));
+    vm.weekly = vm.data.filter(d => vm.ifThisWeek(d.timestamp));
+
   }
   
 }

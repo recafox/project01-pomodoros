@@ -19,6 +19,13 @@
         width: 0 !important;
       }
     }
+    .list--do ul {
+      height: 79%;
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+    }
     .list__item {
       height: $font--warning;
       border-radius: $radius--list-item;
