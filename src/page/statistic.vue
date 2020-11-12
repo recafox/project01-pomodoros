@@ -77,7 +77,17 @@ export default {
       const vm = this;
       return vm.weekly.filter(item => item.finish.status === true).length;
     },
-  }, 
+  },
+  watch: {
+    data: {
+      deept: true,
+      handler (newVal) {
+        const vm = this;
+        vm.today = newVal.filter(d => vm.ifIsToday(d.timestamp));
+        vm.weekly =  newVal.filter(d => vm.ifThisWeek(d.timestamp));
+      }
+    }
+  },
   methods: {
     ifIsToday (timestamp) {
       const vm = this;
@@ -94,7 +104,7 @@ export default {
         'Mon',
         'Tue',
         'Wed',
-        'Thur',
+        'Thu',
         'Fri',
         'Sat',
         'Sun'
@@ -107,9 +117,9 @@ export default {
         }
       })
       let mondayStamp = vm.getTodayTimestamp() - 86400000 * diff;
-
       // get Next monday
-      let nextMonday = mondayStamp + 86400000 * 7;
+      let nextMonday = mondayStamp + 86400000 * 7 - 1;
+
       return mondayStamp <= timestamp && nextMonday > timestamp;
       
     },
@@ -131,8 +141,6 @@ export default {
   mounted () {
     const vm = this;
     vm.data = vm.getListFromStorage();
-    vm.today = vm.data.filter(d => vm.ifIsToday(d.timestamp));
-    vm.weekly = vm.data.filter(d => vm.ifThisWeek(d.timestamp));
 
   }
   
