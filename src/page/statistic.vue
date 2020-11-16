@@ -31,13 +31,12 @@
     <div class="l-right l-container">
       <h3>Done</h3>
       <div class="l-wrapper">
-        <bar-chart :date="'11/01'" :total="5" />
-        <bar-chart :date="'11/02'" :total="3" />
-        <bar-chart :date="'11/03'" :total="2" />
-        <bar-chart :date="'11/04'" :total="1" />
-        <bar-chart :date="'11/05'" :total="6" />
-        <bar-chart :date="'11/06'" :total="7" />
-        <bar-chart :date="'11/07'" :total="20" />
+        <bar-chart
+          v-for="day in weekDay"
+          :key="day.time"
+          :date="day.dateStr"
+          :total="day.total"
+        ></bar-chart>
       </div>
     </div>   
   </div>
@@ -58,6 +57,7 @@ export default {
       data: {},
       today: [],
       weekly: [],
+      weekDay: [],
     }
   },
   computed: {
@@ -97,7 +97,11 @@ export default {
     },
     ifThisWeek (timestamp) {
       const vm = this;
-       // let todayStamp = vm.getTodayTimestamp();
+      return vm.getWeekStart() <= timestamp && vm.getWeekEnd() > timestamp;
+      
+    },
+    getWeekStart () {
+      const vm = this;
       let time = new Date().toString();
       let todayWeek = time.split(' ')[0];
       let weekMap = [
@@ -117,31 +121,73 @@ export default {
         }
       })
       let mondayStamp = vm.getTodayTimestamp() - 86400000 * diff;
-      // get Next monday
-      let nextMonday = mondayStamp + 86400000 * 7 - 1;
-
-      return mondayStamp <= timestamp && nextMonday > timestamp;
-      
+      return mondayStamp;
     },
-    getTodayTimestamp () {
-      let time = new Date();
+    getWeekEnd () {
+      const vm = this;
+      let weekStart = vm.getWeekStart();
+      return weekStart + 86400000 * 7 - 1;
+    },
+    getTodayTimestamp (timestamp) {
+      const vm = this;
+      let time = timestamp ? new Date(timestamp) : new Date();
       let date = time.getDate();
       let month = time.getMonth() + 1;
       let year = time.getFullYear();
-      let str = `${year}-${padZero(month)}-${padZero(date)}`;
-
-      function padZero (number) {
-        return number < 10 ? number : `0${number}`;
-      }
+      let str = `${year}-${vm.padZero(month)}-${vm.padZero(date)}`;
 
       return Date.parse(str);
+    },
+    getThisWeek () {
+      const vm = this;
+      let weekStart = vm.getWeekStart();
+      let weekDay = [];
+      for (let i = 0; i < 7; i ++) {
+        weekDay.push(weekStart + i*86400000);
+      }
+      return weekDay;
+    },
+    formatDay (timestamp) {
+      const vm = this;
+      let time = new Date(timestamp);
+      let month = time.getMonth() + 1;
+      let day = time.getDate();
+      return `${vm.padZero(parseInt(month))}/${vm.padZero(parseInt(day))}`;
+    },
+    padZero (number) {
+      return parseInt(number) >= 10 ? parseInt(number) : `0${number}`;
+    },
+    ifThatDay(target, startStamp, endStamp) {
+      return startStamp < target && endStamp > target;
 
-    }
+    },
   },
   mounted () {
     const vm = this;
-    vm.data = vm.getListFromStorage();
-
+    vm.data = vm.getListFromStorage() ? vm.getListFromStorage() : [];
+    let map = {};
+    let arr = vm.getThisWeek();
+    arr.forEach(function (item) {
+      let time = new Date(item);
+      let year = time.getFullYear();
+      let month = time.getMonth() + 1;
+      let day = time.getDate();
+      let str = `${year}-${month}-${day}T00:00:00`;
+      map[Date.parse(str)] = {
+        total: 0
+      }
+    })
+    vm.data.forEach(function (data) {
+      for (let key in map) {
+        if (data.finish.timestamp > key && data.finish.timestamp <= key + 86400000) {
+          map[key].total ++;
+        }
+      }
+    })
+    for (let key in map) {
+      map[key].dateStr = vm.formatDay(parseInt(key));
+      vm.weekDay.push(map[key]);
+    }
   }
   
 }
