@@ -140,10 +140,10 @@ export default {
     // be navigated away from.
     // has access to `this` component instance.
     const vm = this;
-    vm.updateCurrentTime (vm.$refs.timer.countdownTime)
+    if (vm.currentItem.timestamp) {
+      vm.updateCurrentTime (vm.$refs.timer.countdownTime)
+    }
     next();
-    // const vm = this;
-    // vm.updateCurrentTime();
   }
 
   

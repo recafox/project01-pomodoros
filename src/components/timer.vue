@@ -54,6 +54,9 @@ export default {
     },
     start () {
       const vm = this;
+      if (vm.time <= 0) {
+        return;
+      }
       vm.isCounting = true;
       vm.$emit('countingStart');
       vm.timerID = setInterval(function () {

@@ -114,10 +114,11 @@ export default {
       })
     },
     getActiveTone () {
+      console.log("get active tone");
       const vm = this;
       vm.ringtones.forEach(function (tone) {
         let toneObj = tone.ringtoneObj;
-        if (toneObj.name === vm.currentSetting.ringtone) {
+        if (toneObj.name === vm.currentSetting.ringtone.name) {
           tone.isCurrent = true;
         }
       })
@@ -150,6 +151,16 @@ export default {
     vm.currentSetting = vm.getSettingFromStorage();
     vm.getActiveTone();
   },
+  beforeRouteLeave (to, from, next) {
+      const vm = this;
+      vm.ringtones.forEach(function (tone) {
+        if (tone.isPlaying) {
+          tone.pause();
+        }
+
+      })
+      next();
+  }
 
 }
 </script>

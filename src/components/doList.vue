@@ -71,6 +71,10 @@ export default {
   methods: {
     markFinish(item) {
       const vm = this;
+      if (item.timestamp === vm.currentItem.timestamp) {
+        vm.removeCurrentItemFromStorage();
+      }
+
       let listClone = JSON.parse(JSON.stringify(vm.list));
       item.finish.status = true;
       let time = new Date();

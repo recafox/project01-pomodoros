@@ -179,7 +179,7 @@ export default {
     })
     vm.data.forEach(function (data) {
       for (let key in map) {
-        if (data.finish.timestamp > key && data.finish.timestamp <= key + 86400000) {
+        if (parseInt(data.finish.timestamp) > parseInt(key) && parseInt(data.finish.timestamp) <= parseInt(key) + 86400000) {
           map[key].total ++;
         }
       }
